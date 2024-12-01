@@ -1,117 +1,140 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>zlMoRex</title>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zlMoRex</title>
+</head>
+<body>
 <main>
     <section>
-      <div>
-        <h1>
-          <span>A lo mejor...</span>
-          <span>No sabre dibujar T-T</span>
-        </h1>
-      </div>
-	  <p></p>
+        <div>
+            <h1>
+                <span>A lo mejor...</span>
+                <span>No sabré dibujar T-T</span>
+            </h1>
+        </div>
+        <p></p>
     </section>
     <section>
-      <h3>Pero puedo hacer esto pa ti mailob :></h3>
-      <img src="bb.JPG" alt="bb" class="hidden" id="bb">
+        <h3>Pero puedo hacer esto pa' ti mailob :></h3>
+        <img src="bb.JPG" alt="bb" class="hidden" id="bb">
     </section>
-  </main>
-  <script>
-   document.addEventListener('DOMContentLoaded', () => {
-  const elementsToAnimate = document.querySelectorAll('h1, h3, img'); // Incluye h1 en lugar de span individual
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      } else {
-        entry.target.classList.remove('visible');
-      }
+    <section>
+        <h3>Ya me vas a responder ¿? /t  :[</h3>
+        <iframe 
+            src="https://www.youtube.com/embed/q07Gd6Q-7dY" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+            class="video">
+        </iframe>
+    </section>
+</main>
+<audio id="background-music" loop autoplay>
+    <source src="bb.mp3" type="audio">
+    Tu navegador no soporta la reproducción de audio.
+</audio>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const elementsToAnimate = document.querySelectorAll('h1, h3, img, iframe');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible');
+            }
+        });
+    }, {
+        threshold: 0.3 
     });
-  }, {
-    threshold: 0.5 // Se activa cuando el 50% del elemento es visible
-  });
-  elementsToAnimate.forEach(element => observer.observe(element));
+    elementsToAnimate.forEach(element => observer.observe(element));
+
+    const music = document.getElementById('background-music');
+    music.volume = 0.5; 
 });
-  </script>  
+</script>
 </body>
 <style>
-/* Agrega prefijos para animaciones */
 @keyframes scale-up {
-	to { transform: scale(1.5); }
+    to { transform: scale(1.5); }
 }
 
-img {
-	-webkit-transform: scale(1); /* Prefijo para Safari */
-	transform: scale(1);
-  width: 100%; /* Responsive image */
-    max-width: 600px; /* Limit max width */
-    margin-top: 20px; /* Space above the image */
-    display: block; /* Ensure the image is a block element */
+img, iframe {
+    transform: scale(1);
+    width: 100%;
+    max-width: 600px;
+    margin-top: 10px;
+    display: block;
 }
 
-/* basic */
+iframe, img {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.6s ease-out;
+}
+
+iframe.visible, img.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 section {
-  position: relative; /* Mantiene el flujo del documento */
-  display: grid; /* Para centrar elementos */
-  place-items: center;
-  min-height: 100vh; /* Hace que cada sección ocupe toda la altura de la ventana */
-  margin-bottom: 20px; /* Espacio entre secciones */
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 70vh; 
+    margin-bottom: 10px; 
 }
+
 h3, img {
-  opacity: 0;
-  transform: translateY(20px); /* Hace que los elementos parezcan desplazarse hacia arriba */
-  transition: all 0.6s ease-out;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.6s ease-out;
 }
 
 h3.visible, img.visible {
-  opacity: 1;
-  transform: translateY(0); /* Regresa a su posición original */
+    opacity: 1;
+    transform: translateY(0);
 }
 
 h1 {
-  position: relative; /* Permite que se mueva con el scroll */
-  text-align: center;
-  margin: 0 auto; /* Centra el texto */
-  transform: translateY(20px); /* Animación inicial */
-  opacity: 0; /* Oculto al inicio */
-  transition: all 0.6s ease-out; /* Suaviza la animación */
-  font-size: clamp(2.5rem, 7vw + 1rem, 10rem);
-	text-align: center;
-	line-height: 1;
-	position: relative;
-	top: 50%;
-	left: 50%;
-	margin: 0;
-	translate: -50% -50%;
-	width: 100%;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: all 0.6s ease-out;
+    font-size: clamp(2.5rem, 7vw + 1rem, 10rem);
 }
+
 h1.visible {
-  transform: translateY(0); /* Regresa a su posición original */
-  opacity: 1; /* Aparece */
+    transform: translateY(0);
+    opacity: 1;
 }
+
 h1 span {
-  display: inline-block; /* Asegura que cada span se comporte como bloque en línea */
+    display: inline-block;
 }
-/* Otros ajustes */
+
 h1 span:first-of-type {
-  color: #09f;
-  font-size: 0.35em;
+    color: #09f;
+    font-size: 0.35em;
 }
+
 body {
-  background: #000;
-  color: white;
-  display: grid;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-weight: 700;
-  margin: 0;
-  min-height: 100dvh;
-  overflow-x: hidden;
-  place-items: center;
+    background: #000;
+    color: white;
+    display: grid;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+    margin: 0;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    place-items: center;
 }
 </style>
 </html>
