@@ -17,11 +17,12 @@
         <p></p>
     </section>
     <section>
-        <h3>Peroo... aque tu no le sabes a estoo :></h3>
+        <h3>Peroo... aque tú no le sabes a estoo :></h3>
         <img src="bb.JPG" alt="bb" class="hidden" id="bb">
     </section>
     <section>
         <h3>Ya me vas a responderr ¿? :[</h3>
+        <button id="toggle-music">Pausar Música de Fondo</button>
         <iframe 
             src="https://www.youtube.com/embed/q07Gd6Q-7dY" 
             title="YouTube video player" 
@@ -51,20 +52,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, {
-        threshold: 0.3 // Reduce el umbral para que aparezcan antes
+        threshold: 0.3
     });
     elementsToAnimate.forEach(element => observer.observe(element));
-
-    // Ajustar volumen de la música
     const music = document.getElementById('background-music');
-    music.volume = 0.5; // 50% volumen
-
-    // Pausar música de fondo al reproducir el video
-    const youtubeVideo = document.getElementById('youtube-video');
-    youtubeVideo.addEventListener('load', () => {
-        youtubeVideo.contentWindow.addEventListener('play', () => {
+    music.volume = 0.5;
+    const toggleMusicButton = document.getElementById('toggle-music');
+    toggleMusicButton.addEventListener('click', () => {
+        if (music.paused) {
+            music.play();
+            toggleMusicButton.textContent = 'Pausar Música';
+        } else {
             music.pause();
-        });
+            toggleMusicButton.textContent = 'Reanudar Música';
+        }
     });
 });
 </script>
