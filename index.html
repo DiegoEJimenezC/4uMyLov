@@ -14,99 +14,93 @@
           <span>No sabre dibujar T-T</span>
         </h1>
       </div>
+	  <p></p>
     </section>
     <section>
-      <h3>Pero puedo hacer esto pa ti mailob :></h3><p></p><p></p>
-      <img src="bb.JPG" alt="bb" class="hidden" id="bb">
+      <h3>Pero puedo hacer esto pa ti mailob :></h3>
+      <img src="bb.jpg" alt="bb" class="hidden" id="bb">
     </section>
   </main>
+  <script>
+   document.addEventListener('DOMContentLoaded', () => {
+  const elementsToAnimate = document.querySelectorAll('h1, h3, img'); // Incluye h1 en lugar de span individual
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      } else {
+        entry.target.classList.remove('visible');
+      }
+    });
+  }, {
+    threshold: 0.5 // Se activa cuando el 50% del elemento es visible
+  });
+  elementsToAnimate.forEach(element => observer.observe(element));
+});
+  </script>  
 </body>
 <style>
+/* Agrega prefijos para animaciones */
 @keyframes scale-up {
-	to { scale: 1.5; }
-}
-
-@keyframes fade-away {
-	to { opacity: 0; }
+	to { transform: scale(1.5); }
 }
 
 img {
-    width: 100%; /* Responsive image */
+	-webkit-transform: scale(1); /* Prefijo para Safari */
+	transform: scale(1);
+  width: 100%; /* Responsive image */
     max-width: 600px; /* Limit max width */
     margin-top: 20px; /* Space above the image */
     display: block; /* Ensure the image is a block element */
 }
 
-section {
-	view-timeline: --scroll;
-}
-
-h1 span:first-child {
-	animation: fade-away both linear;
-	animation-timeline: --scroll;
-	animation-range: exit 20% exit 90%;
-}
-
-h1 span:last-child {
-	animation:
-		scale-up both ease-in-out,
-		fade-away both linear;
-	animation-timeline: --scroll;
-	animation-range:
-		exit 0% exit 100%,
-		exit 50% exit 90%;	
-}
-
 /* basic */
 section {
-	position: relative;
-	min-height: 100vh;
-	display: grid;
-	place-items: center;
+  position: relative; /* Mantiene el flujo del documento */
+  display: grid; /* Para centrar elementos */
+  place-items: center;
+  min-height: 100vh; /* Hace que cada sección ocupe toda la altura de la ventana */
+  margin-bottom: 20px; /* Espacio entre secciones */
+}
+h3, img {
+  opacity: 0;
+  transform: translateY(20px); /* Hace que los elementos parezcan desplazarse hacia arriba */
+  transition: all 0.6s ease-out;
 }
 
-h1 span:first-of-type {
-	color: #09f;
-	font-size: 0.35em;
-}
-
-section:nth-of-type(1) {
-	height: 100vh;
-}
-
-section:nth-of-type(2) {
-	height: 140vh;
+h3.visible, img.visible {
+  opacity: 1;
+  transform: translateY(0); /* Regresa a su posición original */
 }
 
 h1 {
-	display: grid;
-}
-
-h2 {
-	font-size: clamp(2rem, 5vw + 1rem, 6rem);
-	text-align: center;
-}
-
-section div {
-	width: 800px;
-	max-width: 100vw;
-	padding: 0 1rem;
-}
-
-:is(h1, h2) {
-	font-size: clamp(2.5rem, 7vw + 1rem, 10rem);
+  position: relative; /* Permite que se mueva con el scroll */
+  text-align: center;
+  margin: 0 auto; /* Centra el texto */
+  transform: translateY(20px); /* Animación inicial */
+  opacity: 0; /* Oculto al inicio */
+  transition: all 0.6s ease-out; /* Suaviza la animación */
+  font-size: clamp(2.5rem, 7vw + 1rem, 10rem);
 	text-align: center;
 	line-height: 1;
-	position: fixed;
+	position: relative;
 	top: 50%;
 	left: 50%;
 	margin: 0;
 	translate: -50% -50%;
 	width: 100%;
 }
-/* reset */
-*, *:after, *:before {
-	box-sizing: border-box;
+h1.visible {
+  transform: translateY(0); /* Regresa a su posición original */
+  opacity: 1; /* Aparece */
+}
+h1 span {
+  display: inline-block; /* Asegura que cada span se comporte como bloque en línea */
+}
+/* Otros ajustes */
+h1 span:first-of-type {
+  color: #09f;
+  font-size: 0.35em;
 }
 body {
   background: #000;
