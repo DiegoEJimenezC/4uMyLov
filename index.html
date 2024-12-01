@@ -11,34 +11,34 @@
         <div>
             <h1>
                 <span>A lo mejor...</span>
-                <span>No sabré dibujar  T-T</span>
+                <span>No sabre dibujar T-T</span>
             </h1>
         </div>
+        <p></p>
     </section>
     <section>
-        <h3>Pero puedo hacer esto pa' ti mailob :></h3>
-        <img src="bb.JPG" class="hidden" id="bb">
+        <h3>Pero puedo hacer esto pa ti mailob :></h3>
+        <img src="bb.JPG" alt="bb" class="hidden" id="bb">
     </section>
     <section>
-        <h3>Ya me vas a responder ¿?  :[</h3>
+        <h3>Ya me vas a responderr ¿? :[</h3>
         <iframe 
             src="https://www.youtube.com/embed/q07Gd6Q-7dY" 
             title="YouTube video player" 
             frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             allowfullscreen
-            class="video" id="youtube-video">
+            class="video">
         </iframe>
-    </section>    
+    </section>
     <section>
-        <h3>@.@  <- Yo seguire esperandooo ->  @.@!</h3>
+        <h3>Sin prisaas que yo seguire esperandoo T-T</h3>
     </section>
 </main>
 <audio id="background-music" loop autoplay>
     <source src="bb.mp3" type="audio/mpeg">
     Tu navegador no soporta la reproducción de audio.
 </audio>
-
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const elementsToAnimate = document.querySelectorAll('h1, h3, img, iframe');
@@ -51,12 +51,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, {
-        threshold: 0.3 
+        threshold: 0.3 // Reduce el umbral para que aparezcan antes
     });
     elementsToAnimate.forEach(element => observer.observe(element));
 
+    // Ajustar volumen de la música
     const music = document.getElementById('background-music');
-    music.volume = 0.5; 
+    music.volume = 0.5; // 50% volumen
+
+    // Pausar música de fondo al reproducir el video
     const youtubeVideo = document.getElementById('youtube-video');
     youtubeVideo.addEventListener('load', () => {
         youtubeVideo.contentWindow.addEventListener('play', () => {
@@ -67,23 +70,70 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 <style>
-section {
-    position: relative;
-    display: grid;
-    place-items: center;
-    min-height: 70vh;
-    margin-bottom: 10px;
+@keyframes scale-up {
+    to { transform: scale(1.5); }
 }
 
-h1, h3, img, iframe {
+img, iframe {
+    transform: scale(1);
+    width: 100%;
+    max-width: 600px;
+    margin-top: 10px;
+    display: block;
+}
+
+iframe, img {
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.6s ease-out;
 }
 
-h1.visible, h3.visible, img.visible, iframe.visible {
+iframe.visible, img.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+section {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 70vh; 
+    margin-bottom: 10px; 
+}
+
+h3, img {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.6s ease-out;
+}
+
+h3.visible, img.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h1 {
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: all 0.6s ease-out;
+    font-size: clamp(2.5rem, 7vw + 1rem, 10rem);
+}
+
+h1.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+h1 span {
+    display: inline-block;
+}
+
+h1 span:first-of-type {
+    color: #09f;
+    font-size: 0.35em;
 }
 
 body {
