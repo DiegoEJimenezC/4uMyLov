@@ -40,6 +40,9 @@
     <section>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/_TXEIKRxtxc?si=Dc0BSk1rVHZxXBOp&amp;start=158" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </section>
+    <section id="gif-section">
+        <img src="boom.gif" alt="GIF animado" id="animated-gif">
+    </section>    
     <section>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/PaoCQHwTPg4?si=VS9gMTUMXv0eHUdq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </section>
@@ -89,6 +92,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 @keyframes scale-up {
     to { transform: scale(1.5); }
+}
+
+#gif-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0; /* Espaciado entre el GIF y otros elementos */
+}
+
+#animated-gif {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px; /* Opcional: bordes redondeados */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Opcional: sombra */
 }
 
 img, iframe {
